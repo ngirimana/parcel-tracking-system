@@ -1,0 +1,29 @@
+{
+	"extends": ["airbnb-base", "prettier"],
+	"plugins": ["prettier"],
+	"rules": {
+		"indent": ["error", "tab"],
+		"no-unused-vars": "warn",
+		"consistent-return": "off",
+		
+		"require-jsdoc": ["error", {
+			"require": {
+				"FunctionDeclaration": true,
+				"MethodDefinition": false,
+				"ClassDeclaration": false,
+				"ArrowFunctionExpression": false,
+				"FunctionExpression": false
+			}
+		}],
+		"valid-jsdoc": [
+			"error",
+			{
+				"requireReturn": true,
+				"requireReturnType": true,
+				"requireParamDescription": false,
+				"requireReturnDescription": true
+			}
+		]
+	}
+
+}

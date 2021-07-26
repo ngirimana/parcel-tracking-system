@@ -1,0 +1,47 @@
+{
+  "name": "send-it",
+  "version": "1.0.0",
+  "description": "SendIt",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "start": "babel-node src/server.js",
+    "dev": "nodemon --exec babel-node src/server.js",
+     "prod": "SET NODE_ENV=PRODUCTION& nodemon --exec babel-node src/server",
+    "seeder": "babel-node src/utils/seeder.js",
+     "heroku-postbuild" : "NPM_CONFIG_PRODUCTION=false && npm install --prefix frontend && npm run build --prefix frontend"
+  },
+  "dependencies": {
+    "@babel/cli": "^7.13.10",
+    "@babel/core": "^7.13.10",
+    "@babel/node": "^7.13.10",
+    "@babel/plugin-proposal-class-properties": "^7.13.0",
+    "@babel/preset-env": "^7.13.10",
+    "@babel/register": "^7.13.8",
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.19.0",
+    "cloudinary": "^1.25.0",
+    "cookie-parser": "^1.4.5",
+    "cors": "^2.8.5",
+    "crypto": "^1.0.1",
+    "dotenv": "^8.2.0",
+    "eslint": "^7.22.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-config-node": "^4.1.0",
+    "eslint-config-prettier": "^8.1.0",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-prettier": "^3.3.1",
+    "express": "^4.17.1",
+    "express-fileupload": "^1.2.1",
+    "jsonwebtoken": "^8.5.1",
+    "mdbreact": "^5.0.1",
+    "mongoose": "^5.12.0",
+    "nodemailer": "^6.5.0",
+    "prettier": "^2.2.1",
+    "validator": "^13.5.2"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.7"
+  }
+}

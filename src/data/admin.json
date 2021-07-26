@@ -1,0 +1,14 @@
+[
+	{
+		"firstName": "code",
+		"lastName": "Everwhere",
+		"email": "code@gmail.com",
+		"password": "$2a$15$1YNVZITvH3bukNMvbABuDuqbSCoqWh6DDg3yaYU39cBZ/zcpobA92",
+		"role":"admin",
+		"avatar": {
+			"public_id": "notaria/ydai6mxa1crvusqjj9ja",
+			"url": "https://res.cloudinary.com/ngirimana/image/upload/v1617608430/notaria/ydai6mxa1crvusqjj9ja.png"
+		}
+    
+	}
+]
