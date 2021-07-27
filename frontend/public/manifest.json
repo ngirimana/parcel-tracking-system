@@ -1,12 +1,12 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "sendit",
+  "name": "Send it",
   "icons": [
    
     {
-      "src": "logo.png",
-      "type": "image/png",
-      "sizes": "840x716"
+      "src": "logo.jpg",
+      "type": "image/jpg",
+      "sizes": "626x266"
     }
     
   ],
