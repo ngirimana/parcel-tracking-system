@@ -159,7 +159,7 @@ const Register = ({ history, location }) => {
 							type="submit"
 							className="btn btn-block"
 						>
-							{loading ? <Loader /> : 'REGISTER'}
+							REGISTER
 						</button>
 					</form>
 				</div>

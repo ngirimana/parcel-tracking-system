@@ -251,7 +251,7 @@ const NewCourier = ({ history, location }) => {
 							type="submit"
 							className="btn btn-block "
 						>
-							{loading ? <Loader /> : 'Submit'}
+							Submit
 						</button>
 					</form>
 				</div>

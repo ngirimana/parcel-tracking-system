@@ -73,7 +73,7 @@ const Login = ({ history }) => {
 							className="btn btn-block "
 							style={{ height: '40px' }}
 						>
-							{loading ? <Loader /> : 'LOGIN'}
+							LOGIN
 						</button>
 					</form>
 				</div>
