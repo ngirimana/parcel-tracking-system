@@ -81,6 +81,30 @@ class CourrierController {
 			return errorResponse(res, 400, err.message);
 		}
 	}
+
+	/**
+	 * Get details for single courrier => /api/v1/courriers/:id
+	 * @param {object} req
+	 * @param {object} res
+	 * @returns {object} details of a single Courrier
+	 */
+
+	static async trackCourrier(req, res) {
+		try {
+			const courier = await Courier.findOne({
+				trackingNumber: req.body.trackingNumber,
+			});
+			if (courier) {
+				return res.status(200).json({
+					success: true,
+					courier,
+				});
+			}
+			return errorResponse(res, 404, 'Courrier  is not available');
+		} catch (err) {
+			return errorResponse(res, 400, err.message);
+		}
+	}
 	/**
 	 * update courier
 	 * @param {object} req

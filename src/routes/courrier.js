@@ -19,6 +19,7 @@ router.get(
 	isAuthenticatedUser,
 	CourrierController.getSingleCourrier,
 );
+router.get('/track/courrier', CourrierController.trackCourrier);
 router.patch(
 	'/courrier/:id',
 	isAuthenticatedUser,
