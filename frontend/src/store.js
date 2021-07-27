@@ -14,19 +14,19 @@ import {
 	agencyReducer,
 } from './reducers/agencyReducer';
 import {
-	documentReducer,
-	documentsReducer,
-	documentDetailsReducer,
+	courierReducer,
+	couriersReducer,
+	courierDetailsReducer,
 	courierUpdateAndDeleteReducer,
-} from './reducers/documentReducer';
+} from './reducers/courierReducer';
 
 const reducer = combineReducers({
 	auth: authReducer,
 	registerUser: registerReducer,
-	newDocument: documentReducer,
+	newDocument: courierReducer,
 	usersList: usersListReducers,
-	documents: documentsReducer,
-	documentDetails: documentDetailsReducer,
+	documents: couriersReducer,
+	documentDetails: courierDetailsReducer,
 	newAgency: agencyReducer,
 	agencies: agenciesReducer,
 	agencyDetails: agencyDetailsReducer,

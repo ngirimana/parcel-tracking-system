@@ -1,14 +1,14 @@
 import {
-	NEW_DOCUMENT_START,
-	NEW_DOCUMENT_SUCCESS,
-	NEW_DOCUMENT_FAIL,
-	NEW_DOCUMENT_RESET,
-	ALL_DOCUMENTS_START,
-	ALL_DOCUMENTS_SUCCESS,
-	ALL_DOCUMENTS_FAIL,
-	DOCUMENT_DETAILS_START,
-	DOCUMENT_DETAILS_SUCCESS,
-	DOCUMENT_DETAILS_FAIL,
+	NEW_COURIER_START,
+	NEW_COURIER_SUCCESS,
+	NEW_COURIER_FAIL,
+	NEW_COURIER_RESET,
+	ALL_COURIERS_START,
+	ALL_COURIERS_SUCCESS,
+	ALL_COURIERS_FAIL,
+	COURIER_DETAILS_START,
+	COURIER_DETAILS_SUCCESS,
+	COURIER_DETAILS_FAIL,
 	UPDATE_COURIER_REQUEST,
 	UPDATE_COURIER_SUCCESS,
 	UPDATE_COURIER_FAIL,
@@ -18,30 +18,30 @@ import {
 	DELETE_COURIER_FAIL,
 	DELETE_COURIER_RESET,
 	CLEAR_ERRORS,
-} from '../constants/documentConstant';
+} from '../constants/courierConstant';
 
-export const documentReducer = (state = { document: {} }, action) => {
+export const courierReducer = (state = { document: {} }, action) => {
 	switch (action.type) {
-		case NEW_DOCUMENT_START:
+		case NEW_COURIER_START:
 			return {
 				loading: true,
 				document: [],
 			};
-		case NEW_DOCUMENT_SUCCESS:
+		case NEW_COURIER_SUCCESS:
 			return {
 				...state,
 				loading: false,
 				success: action.payload.success,
 				document: action.payload.document,
 			};
-		case NEW_DOCUMENT_FAIL:
+		case NEW_COURIER_FAIL:
 			return {
 				...state,
 				loading: false,
 				document: null,
 				error: action.payload,
 			};
-		case NEW_DOCUMENT_RESET:
+		case NEW_COURIER_RESET:
 			return {
 				...state,
 				success: false,
@@ -55,21 +55,21 @@ export const documentReducer = (state = { document: {} }, action) => {
 			return state;
 	}
 };
-export const documentsReducer = (state = { couriers: [] }, action) => {
+export const couriersReducer = (state = { couriers: [] }, action) => {
 	switch (action.type) {
-		case ALL_DOCUMENTS_START:
+		case ALL_COURIERS_START:
 			return {
 				loading: true,
 				couriers: [],
 			};
 
-		case ALL_DOCUMENTS_SUCCESS:
+		case ALL_COURIERS_SUCCESS:
 			return {
 				loading: false,
 				couriers: action.payload,
 			};
 
-		case ALL_DOCUMENTS_FAIL:
+		case ALL_COURIERS_FAIL:
 			return {
 				loading: false,
 				error: action.payload,
@@ -85,21 +85,21 @@ export const documentsReducer = (state = { couriers: [] }, action) => {
 			return state;
 	}
 };
-export const documentDetailsReducer = (state = { courier: {} }, action) => {
+export const courierDetailsReducer = (state = { courier: {} }, action) => {
 	switch (action.type) {
-		case DOCUMENT_DETAILS_START:
+		case COURIER_DETAILS_START:
 			return {
 				...state,
 				loading: true,
 			};
 
-		case DOCUMENT_DETAILS_SUCCESS:
+		case COURIER_DETAILS_SUCCESS:
 			return {
 				loading: false,
 				courier: action.payload,
 			};
 
-		case DOCUMENT_DETAILS_FAIL:
+		case COURIER_DETAILS_FAIL:
 			return {
 				...state,
 				error: action.payload,

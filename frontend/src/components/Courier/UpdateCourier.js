@@ -6,10 +6,10 @@ import { useAlert } from 'react-alert';
 import { useDispatch, useSelector } from 'react-redux';
 import {
 	updateCourier,
-	getDocumentDetails,
+	getCourierDetails,
 	clearErrors,
-} from '../../actions/documentActions';
-import { UPDATE_COURIER_RESET } from '../../constants/documentConstant';
+} from '../../actions/courierActions';
+import { UPDATE_COURIER_RESET } from '../../constants/courierConstant';
 
 const UpdateCourier = ({ match, history }) => {
 	const [firstName, setFirstName] = useState('');
@@ -37,7 +37,7 @@ const UpdateCourier = ({ match, history }) => {
 
 	useEffect(() => {
 		if (courier && courier._id !== courierId) {
-			dispatch(getDocumentDetails(courierId));
+			dispatch(getCourierDetails(courierId));
 		} else {
 			setFirstName(courier.firstName);
 			setLastName(courier.lastName);

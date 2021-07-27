@@ -83,7 +83,7 @@ class CourrierController {
 	}
 
 	/**
-	 * Get details for single courrier => /api/v1/courriers/:id
+	 * track courier
 	 * @param {object} req
 	 * @param {object} res
 	 * @returns {object} details of a single Courrier
@@ -92,7 +92,7 @@ class CourrierController {
 	static async trackCourrier(req, res) {
 		try {
 			const courier = await Courier.findOne({
-				trackingNumber: req.body.trackingNumber,
+				trackingNumber: req.params.id,
 			});
 			if (courier) {
 				return res.status(200).json({

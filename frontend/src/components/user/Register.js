@@ -30,7 +30,7 @@ const Register = ({ history, location }) => {
 
 	useEffect(() => {
 		if (error) {
-			alert.error(error);
+			alert.error('Some thing went wrong');
 			dispatch(clearErrors());
 		}
 		if (success) {

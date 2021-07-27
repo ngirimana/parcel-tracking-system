@@ -5,13 +5,14 @@ import Header from './components/layout/Header';
 import Footer from './components/layout/Footer';
 import Login from './components/user/Login';
 import Register from './components/user/Register';
-import NewDocument from './components/Document/NewCourier';
-import CouriersList from './components/Document/CouriersList';
+import NewDocument from './components/Courier/NewCourier';
+import CouriersList from './components/Courier/CouriersList';
 import ProtectedRoute from './components/route/ProtectedRoute';
-import CourierDetails from './components/Document/CourierDetails';
+import CourierDetails from './components/Courier/CourierDetails';
 import UsersList from './components/user/UsersList';
 import UpdateUser from './components/user/UpdateUser';
-import UpdateCourier from './components/Document/UpdateCourier';
+import UpdateCourier from './components/Courier/UpdateCourier';
+import TrackCourier from './components/Courier/TrackCourier';
 // import Home from './components/Home';
 import { loadUser } from './actions/userActions';
 import store from './store';
@@ -26,6 +27,8 @@ function App() {
 				<div className="container container-fluid">
 					<Route path="/" component={Login} exact />
 					<Route path="/login" component={Login} />
+					<Route path="/track-courier" component={TrackCourier} />
+
 					<ProtectedRoute
 						path="/register"
 						isAdmin={true}
@@ -48,7 +51,6 @@ function App() {
 						component={UpdateCourier}
 						exact
 					/>
-
 					<ProtectedRoute path="/document" component={NewDocument} exact />
 					<ProtectedRoute path="/couriers" component={CouriersList} exact />
 					<ProtectedRoute path="/courier/:id" component={CourierDetails} />

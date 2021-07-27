@@ -7,11 +7,11 @@ import Spinner from '../layout/Spinner';
 import { useAlert } from 'react-alert';
 import { useDispatch, useSelector } from 'react-redux';
 import {
-	getDocuments,
+	getCouriers,
 	deleteCourier,
 	clearErrors,
-} from '../../actions/documentActions';
-import { DELETE_COURIER_RESET } from '../../constants/documentConstant';
+} from '../../actions/courierActions';
+import { DELETE_COURIER_RESET } from '../../constants/courierConstant';
 
 const CouriersList = ({ history }) => {
 	const alert = useAlert();
@@ -23,7 +23,7 @@ const CouriersList = ({ history }) => {
 	);
 
 	useEffect(() => {
-		dispatch(getDocuments());
+		dispatch(getCouriers());
 
 		if (error) {
 			alert.error(error);

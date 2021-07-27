@@ -4,7 +4,7 @@ import { Carousel } from 'react-bootstrap';
 import Loader from '../layout/Loader';
 import MetaData from '../layout/MetaData';
 import { useDispatch, useSelector } from 'react-redux';
-import { getDocumentDetails, clearErrors } from '../../actions/documentActions';
+import { getCourierDetails, clearErrors } from '../../actions/courierActions';
 
 const CourierDetails = ({ match }) => {
 	const alert = useAlert();
@@ -13,7 +13,7 @@ const CourierDetails = ({ match }) => {
 		(state) => state.documentDetails,
 	);
 	useEffect(() => {
-		dispatch(getDocumentDetails(match.params.id));
+		dispatch(getCourierDetails(match.params.id));
 		console.log(match.params.id);
 
 		if (error) {

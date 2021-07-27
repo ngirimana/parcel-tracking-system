@@ -3,8 +3,8 @@ import MetaData from '../layout/MetaData';
 import Loader from '../layout/Loader';
 import { useAlert } from 'react-alert';
 import { useDispatch, useSelector } from 'react-redux';
-import { newDocument, clearErrors } from '../../actions/documentActions';
-import { NEW_DOCUMENT_RESET } from '../../constants/documentConstant';
+import { newCourier, clearErrors } from '../../actions/courierActions';
+import { NEW_COURIER_RESET } from '../../constants/courierConstant';
 
 const NewCourier = ({ history, location }) => {
 	const [courier, setCourier] = useState({
@@ -35,14 +35,14 @@ const NewCourier = ({ history, location }) => {
 
 	useEffect(() => {
 		if (error) {
-			alert.error(error);
+			alert.error('Some thing went wrong,try again!');
 			dispatch(clearErrors());
 		}
 
 		if (success) {
 			history.push('/couriers');
 			alert.success('Courier created successfully');
-			dispatch({ type: NEW_DOCUMENT_RESET });
+			dispatch({ type: NEW_COURIER_RESET });
 		}
 	}, [dispatch, alert, success, error, history]);
 
@@ -63,7 +63,7 @@ const NewCourier = ({ history, location }) => {
 		});
 		console.log(formData.getAll('images').length);
 
-		dispatch(newDocument(formData));
+		dispatch(newCourier(formData));
 	};
 	const onChange = (e) => {
 		if (e.target.name === 'images') {
