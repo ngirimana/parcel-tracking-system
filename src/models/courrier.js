@@ -65,6 +65,14 @@ const courierSchema = new mongoose.Schema({
 			},
 		},
 	],
+	trackingNumber: {
+		type: String,
+		required: [true],
+	},
+	currentLocation: {
+		type: String,
+		required: [true],
+	},
 
 	createdAt: {
 		type: Date,

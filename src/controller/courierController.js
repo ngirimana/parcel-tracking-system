@@ -1,8 +1,9 @@
 /* eslint-disable no-await-in-loop */
 import cloudinary from 'cloudinary';
+import cuid from 'cuid';
 import Courier from '../models/courrier';
 import { errorResponse } from '../utils/response';
-import userIdFromToken from '../utils/getUserIdFromToken';
+import sendSms from '../utils/sms';
 
 class CourrierController {
 	static async newCourrier(req, res) {
@@ -31,7 +32,12 @@ class CourrierController {
 
 			req.body.images = imagesLinks;
 			req.body.user = req.user.id;
+			req.body.currentLocation = req.body.from;
+			req.body.trackingNumber = cuid();
 			const courrier = await Courier.create(req.body);
+			const welcomeMessage = `Hey ${courrier.firstName} ! Your tracking number is ${courrier.trackingNumber}`;
+
+			sendSms(courrier.phone, welcomeMessage);
 
 			res.status(201).json({
 				success: true,
@@ -150,7 +156,7 @@ class CourrierController {
 			if (!courier) {
 				return errorResponse(res, 404, 'Courier is not available');
 			}
-			
+
 			/**
 			 * Deleting images associated with the Courier
 			 */
