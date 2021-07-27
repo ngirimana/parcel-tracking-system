@@ -18,7 +18,7 @@ class CourrierController {
 
 			for (let i = 0; i < images.length; i += 1) {
 				const result = await cloudinary.v2.uploader.upload(images[i], {
-					folder: 'notaria',
+					folder: 'products',
 					overwrite: true,
 					invalidate: true,
 				});
@@ -71,6 +71,100 @@ class CourrierController {
 				});
 			}
 			return errorResponse(res, 404, 'Courrier  is not available');
+		} catch (err) {
+			return errorResponse(res, 400, err.message);
+		}
+	}
+	/**
+	 * update courier
+	 * @param {object} req
+	 * @param {object} res
+	 * @returns {object } of details for courier product
+	 */
+
+	static async updateCourier(req, res) {
+		try {
+			let courier = await Courier.findById(req.params.id);
+
+			if (!courier) {
+				return errorResponse(res, 404, 'Courier is not available');
+			}
+
+			let images = [];
+			if (typeof req.body.images === 'string') {
+				images.push(req.body.images);
+			} else {
+				images = req.body.images;
+			}
+
+			if (images !== undefined) {
+				// Deleting images associated with the courier
+				for (let i = 0; i < courier.images.length; i += 1) {
+					const result = await cloudinary.v2.uploader.destroy(
+						courier.images[i].public_id,
+					);
+				}
+
+				const imagesLinks = [];
+
+				for (let i = 0; i < images.length; i += 1) {
+					const result = await cloudinary.v2.uploader.upload(images[i], {
+						folder: 'products',
+					});
+
+					imagesLinks.push({
+						public_id: result.public_id,
+						url: result.secure_url,
+					});
+				}
+
+				req.body.images = imagesLinks;
+			}
+
+			courier = await Courier.findByIdAndUpdate(req.params.id, req.body, {
+				new: true,
+				runValidators: true,
+				useFindAndModify: false,
+			});
+
+			res.status(200).json({
+				success: true,
+				courier,
+			});
+		} catch (err) {
+			return errorResponse(res, 400, err.message);
+		}
+	}
+
+	/**
+	 * Delete courier
+	 * @param {object} req
+	 * @param {object} res
+	 * @returns String message 'Courier is deleted successfully.'
+	 */
+
+	static async deleteCourier(req, res) {
+		try {
+			const courier = await Courier.findById(req.params.id);
+
+			if (!courier) {
+				return errorResponse(res, 404, 'Courier is not available');
+			}
+			
+			/**
+			 * Deleting images associated with the Courier
+			 */
+			for (let i = 0; i < courier.images.length; i += 1) {
+				const result = await cloudinary.v2.uploader.destroy(
+					courier.images[i].public_id,
+				);
+			}
+
+			await courier.remove();
+			res.status(200).json({
+				success: true,
+				message: 'Courier is deleted.',
+			});
 		} catch (err) {
 			return errorResponse(res, 400, err.message);
 		}

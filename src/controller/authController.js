@@ -257,7 +257,8 @@ class UserController {
 	static async updateUser(req, res) {
 		try {
 			const newUserData = {
-				name: req.body.name,
+				firstName: req.body.firstName,
+				lastName: req.body.lastName,
 				email: req.body.email,
 				role: req.body.role,
 			};
@@ -267,7 +268,6 @@ class UserController {
 				runValidators: true,
 				useFindAndModify: false,
 			});
-			console.log(user);
 
 			res.status(200).json({
 				success: true,
@@ -282,7 +282,6 @@ class UserController {
 	static async deleteUser(req, res) {
 		try {
 			const user = await User.findById(req.params.id);
-			console.log(user);
 
 			if (!user) {
 				return errorResponse(`User does not found with id: ${req.params.id}`);

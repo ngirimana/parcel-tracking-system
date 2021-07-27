@@ -11,7 +11,8 @@ import ProtectedRoute from './components/route/ProtectedRoute';
 import CourierDetails from './components/Document/CourierDetails';
 import UsersList from './components/user/UsersList';
 import UpdateUser from './components/user/UpdateUser';
-import Home from './components/Home';
+import UpdateCourier from './components/Document/UpdateCourier';
+// import Home from './components/Home';
 import { loadUser } from './actions/userActions';
 import store from './store';
 function App() {
@@ -40,6 +41,11 @@ function App() {
 						path="/admin/user/:id"
 						isAdmin={true}
 						component={UpdateUser}
+						exact
+					/>
+					<ProtectedRoute
+						path="/update/courier/:id"
+						component={UpdateCourier}
 						exact
 					/>
 

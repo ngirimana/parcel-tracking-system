@@ -9,6 +9,14 @@ import {
 	DOCUMENT_DETAILS_START,
 	DOCUMENT_DETAILS_SUCCESS,
 	DOCUMENT_DETAILS_FAIL,
+	UPDATE_COURIER_REQUEST,
+	UPDATE_COURIER_SUCCESS,
+	UPDATE_COURIER_FAIL,
+	UPDATE_COURIER_RESET,
+	DELETE_COURIER_REQUEST,
+	DELETE_COURIER_SUCCESS,
+	DELETE_COURIER_FAIL,
+	DELETE_COURIER_RESET,
 	CLEAR_ERRORS,
 } from '../constants/documentConstant';
 
@@ -95,6 +103,58 @@ export const documentDetailsReducer = (state = { courier: {} }, action) => {
 			return {
 				...state,
 				error: action.payload,
+			};
+
+		case CLEAR_ERRORS:
+			return {
+				...state,
+				error: null,
+			};
+
+		default:
+			return state;
+	}
+};
+export const courierUpdateAndDeleteReducer = (state = {}, action) => {
+	switch (action.type) {
+		case DELETE_COURIER_REQUEST:
+		case UPDATE_COURIER_REQUEST:
+			return {
+				...state,
+				loading: true,
+			};
+
+		case DELETE_COURIER_SUCCESS:
+			return {
+				...state,
+				loading: false,
+				isDeleted: action.payload,
+			};
+
+		case UPDATE_COURIER_SUCCESS:
+			return {
+				...state,
+				loading: false,
+				isUpdated: action.payload,
+			};
+
+		case DELETE_COURIER_FAIL:
+		case UPDATE_COURIER_FAIL:
+			return {
+				...state,
+				error: action.payload,
+			};
+
+		case DELETE_COURIER_RESET:
+			return {
+				...state,
+				isDeleted: false,
+			};
+
+		case UPDATE_COURIER_RESET:
+			return {
+				...state,
+				isUpdated: false,
 			};
 
 		case CLEAR_ERRORS:

@@ -6,7 +6,7 @@ import MetaData from '../layout/MetaData';
 import Spinner from '../layout/Spinner';
 import { useAlert } from 'react-alert';
 import { useDispatch, useSelector } from 'react-redux';
-import { deleteUser, clearErrors } from '../../actions/userActions';
+import { deleteUser } from '../../actions/userActions';
 import { DELETE_USER_RESET } from '../../constants/userConstants';
 
 import axios from 'axios';
@@ -23,20 +23,18 @@ const UsersList = ({ history }) => {
 		axios
 			.get('/api/v1/auth/admin/users')
 			.then((res) => {
-				console.log(res.data.users);
 				setUserList(res.data.users);
-				console.log(res.data.users);
 			})
 			.catch((err) => {
-				alert.error('Something went wrong');
 				console.log(err);
+				alert.error('Something went wrong');
 			});
 		if (isDeleted) {
 			alert.success('User deleted successfully');
 			history.push('/admin/users');
 			dispatch({ type: DELETE_USER_RESET });
 		}
-	}, [usersList, dispatch, history, alert, isDeleted]);
+	}, [isDeleted, alert, history, dispatch]);
 	const deleteUserHandler = (id) => {
 		dispatch(deleteUser(id));
 	};

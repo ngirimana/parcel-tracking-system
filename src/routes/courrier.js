@@ -19,5 +19,15 @@ router.get(
 	isAuthenticatedUser,
 	CourrierController.getSingleCourrier,
 );
+router.patch(
+	'/courrier/:id',
+	isAuthenticatedUser,
+	CourrierController.updateCourier,
+);
+router.delete(
+	'/courrier/:id',
+	isAuthenticatedUser,
+	CourrierController.deleteCourier,
+);
 
 export default router;

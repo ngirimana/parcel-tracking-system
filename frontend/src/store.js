@@ -17,6 +17,7 @@ import {
 	documentReducer,
 	documentsReducer,
 	documentDetailsReducer,
+	courierUpdateAndDeleteReducer,
 } from './reducers/documentReducer';
 
 const reducer = combineReducers({
@@ -31,6 +32,7 @@ const reducer = combineReducers({
 	agencyDetails: agencyDetailsReducer,
 	userDetails: userDetailsReducer,
 	user: userReducer,
+	courier: courierUpdateAndDeleteReducer,
 });
 const middleware = [thunk];
 const store = createStore(

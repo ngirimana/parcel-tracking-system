@@ -1,7 +1,8 @@
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
+import path from 'path';
 
-dotenv.config();
+dotenv.config({ path: path.resolve(__dirname, '../../.env') });
 const connectDatabase = () => {
 	mongoose
 		.connect(process.env.DB_LOCAL_URL, {

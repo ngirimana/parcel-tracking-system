@@ -19,7 +19,6 @@ import {
 	USER_DETAILS_FAIL,
 	DELETE_USER_REQUEST,
 	DELETE_USER_SUCCESS,
-	DELETE_USER_RESET,
 	DELETE_USER_FAIL,
 	LOAD_USER_FAIL,
 	LOGOUT_SUCCESS,
@@ -148,7 +147,6 @@ export const updateUser = (id, userData) => async (dispatch) => {
 			userData,
 			config,
 		);
-
 		dispatch({
 			type: UPDATE_USER_SUCCESS,
 			payload: data.success,
