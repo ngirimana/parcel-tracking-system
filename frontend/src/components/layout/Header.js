@@ -36,6 +36,15 @@ const Header = () => {
 								Home <span className="sr-only">(current)</span>
 							</Link>
 						</li>
+						<li className="nav-item">
+							<Link
+								className="nav-link"
+								to="/track-courier"
+								style={{ color: 'white' }}
+							>
+								Track
+							</Link>
+						</li>
 						{user && user.role === 'admin' && (
 							<li className="nav-item">
 								<Link
@@ -124,15 +133,6 @@ const Header = () => {
 							</Fragment>
 						) : (
 							<Fragment>
-								<li className="nav-item">
-									<Link
-										className="nav-link"
-										to="/track-courier"
-										style={{ color: 'white' }}
-									>
-										Track
-									</Link>
-								</li>
 								<li className="nav-item">
 									<Link
 										className="nav-link"
