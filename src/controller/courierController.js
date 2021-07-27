@@ -1,6 +1,10 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable no-console */
+/* eslint-disable prefer-template */
 /* eslint-disable no-await-in-loop */
 import cloudinary from 'cloudinary';
 import cuid from 'cuid';
+import nodemailer from 'nodemailer';
 import Courier from '../models/courrier';
 import { errorResponse } from '../utils/response';
 import sendSms from '../utils/sms';
@@ -36,6 +40,40 @@ class CourrierController {
 			req.body.trackingNumber = cuid();
 			const courrier = await Courier.create(req.body);
 			const welcomeMessage = `Hey ${courrier.firstName} ! Your tracking number is ${courrier.trackingNumber}`;
+			const mailOptions = {
+				from: `Send_it >${process.env.MAIL_USERNAME}`,
+				to: courrier.email,
+				subject: `Tracking Number`,
+				text: welcomeMessage,
+			};
+			const transporter = nodemailer.createTransport({
+				service: 'gmail',
+				auth: {
+					type: 'OAuth2',
+					user: process.env.MAIL_USERNAME,
+					pass: process.env.MAIL_PASSWORD,
+					clientId: process.env.OAUTH_CLIENTID,
+					clientSecret: process.env.OAUTH_CLIENT_SECRET,
+					refreshToken: process.env.OAUTH_REFRESH_TOKEN,
+				},
+			});
+			// eslint-disable-next-line func-names
+			// eslint-disable-next-line prefer-arrow-callback
+			transporter.sendMail(mailOptions, function (err, data) {
+				if (err) {
+					console.log('Error ' + err);
+					res.status(400).json({
+						success: false,
+						message: 'Sending failed',
+					});
+				} else {
+					console.log('Email sent successfully');
+					res.status(200).json({
+						success: true,
+						message: `Email sent to: ${req.body.email}}`,
+					});
+				}
+			});
 
 			sendSms(courrier.phone, welcomeMessage);
 

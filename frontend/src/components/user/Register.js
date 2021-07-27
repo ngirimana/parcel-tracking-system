@@ -1,6 +1,5 @@
 import React, { Fragment, useState, useEffect } from 'react';
 import MetaData from '../layout/MetaData';
-import Loader from '../layout/Loader';
 import { useAlert } from 'react-alert';
 import { useDispatch, useSelector } from 'react-redux';
 import { REGISTER_USER_RESET } from '../../constants/userConstants';
@@ -20,7 +19,7 @@ const Register = ({ history, location }) => {
 	);
 	const alert = useAlert();
 	const dispatch = useDispatch();
-	const { success, isAuthenticated, error, loading } = useSelector(
+	const { success, isAuthenticated, error } = useSelector(
 		(state) => state.registerUser,
 	);
 
