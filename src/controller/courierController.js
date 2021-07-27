@@ -41,7 +41,7 @@ class CourrierController {
 			const courrier = await Courier.create(req.body);
 			const welcomeMessage = `Hey ${courrier.firstName} ! Your tracking number is ${courrier.trackingNumber}`;
 			const mailOptions = {
-				from: `Send_it >${process.env.MAIL_USERNAME}`,
+				from: `Send_it ${process.env.MAIL_USERNAME}`,
 				to: courrier.email,
 				subject: `Tracking Number`,
 				text: welcomeMessage,
