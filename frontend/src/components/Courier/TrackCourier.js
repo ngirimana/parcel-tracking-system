@@ -63,7 +63,7 @@ const TrackCourier = () => {
 						<h4 className="mt-2">Destination:</h4>
 						<p>{courierData.destination}</p>
 						<hr />
-						<h4 className="mt-2">Weight:</h4>
+						<h4 className="mt-2">Current Location:</h4>
 						<p>{courierData.currentLocation}</p>
 						<hr />
 					</div>
